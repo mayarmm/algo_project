@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="stylesheet"  href="index.css">
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Longest Increasing Subsequence</title>
+    
+</head>
+<body>
+    <h1>longest increasing subsequence</h1>
+    <div id="inputSection">
+        <div class="input1">
+            <label for="numElements">Enter the number of elements in the array:</label>
+        <input class="input" type="number" id="numElements" min="1">
+        </div>
+        <br>
+        <div class="input2">
+            <label for="arrayElements">Enter the elements of the array (comma-separated):</label>
+        <input type="text" id="arrayElements">
+        </div>
+        <br>
+        <div class="buttonn"><button onclick="calculateLIS()">Calculate LIS</button></div>
+    </div>
+    <div id="outputSection">
+        <p id="lisLength"></p>
+        <p id="lisArray"></p>
+    </div>
+    <script src="scribt.js"></script>
+</body>
+</html>
