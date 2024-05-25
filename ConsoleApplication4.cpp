@@ -1,11 +1,4 @@
-//
-//
-//
-//
-//
-//
-//// aliaaa
-////
+
 //#include <iostream>
 //#include <vector>
 //#include <algorithm>
@@ -74,83 +67,7 @@
 // 
 //
 
-
-
-
-///////////////////////////////////////////////   mayar 1
-
-//#include <iostream>
-//using namespace std;
-//
-//void LargestIncreasingSubsequence_dynamic_programming(int* arr, int n) {
-//    int max_length = 1, end_point = 0;
-//    int* array1 = new int[n];
-//    int* array2 = new int[n];
-//
-//    // Initialize dp and prev arrays
-//    for (int i = 0; i < n; i++) {
-//        array1[i] = 1;
-//        array2[i] = -1; // Initialize prev array with -1 indicating no previous element
-//    }
-//
-//    for (int i = 1; i < n; i++) {
-//        for (int j = 0; j < i; j++) {
-//            if (arr[i] > arr[j] && array1[i] < array1[j]+ 1) {
-//                array1[i] = array1[j] + 1;
-//                array2[i] = j;
-//            }
-//        }
-//        if (array1[i] > max_length) {
-//            max_length = array1[i];
-//            end_point = i; // Update the end point when a longer sequence is found
-//        }
-//    }
-//
-//    cout << "Length of the longest increasing subsequence is: " << max_length << endl;
-//    cout << " the longest increasing subsequences using dynamic programming is: ";
-//
-//    // Allocate an array to store the elements of the LIS in ascending order
-//    int* lis = new int[max_length];
-//    int k = max_length - 1; // Index for placing elements into the lis array
-//
-//    // Trace back from the end point to construct the LIS
-//    while (end_point != -1) {
-//        lis[k--] = arr[end_point];
-//        end_point = array2[end_point];
-//    }
-//
-//    // Print the LIS in ascending order
-//    for (int i = 0; i < max_length; i++) {
-//        cout << lis[i] << " ";
-//    }
-//    cout << endl;
-//
-//    // Deallocate memory reserved for the lis array
-//    delete[] lis;
-//
-//    // Deallocate memory reserved for the dp and prev arrays
-//    delete[] array1;
-//    delete[] array2;
-//}
-//
-//int main() {
-//    int n;
-//    cout << "Enter the number of elements in the array: ";
-//    cin >> n;
-//    int* arr = new int[n];
-//    cout << "Enter the elements of the array: ";
-//    for (int i = 0; i < n; i++) {
-//        cin >> arr[i];
-//    }
-//    LargestIncreasingSubsequence_dynamic_programming(arr, n);
-//    delete[] arr;
-//    return 0;
-//}
-
-
-
-
-/////////////////////////////////
+///////////////////////////////////////
 
 #include <iostream>
 using namespace std;
@@ -164,16 +81,16 @@ void LargestIncreasingSubsequence_dynamic_programming(int* arr, int n) {
     int* lis_length = new int[n]; // Length of LIS ending at each index
     int* prev_index = new int[n]; // Previous index in the LIS ending at each index
 
-    // Initialize lis_length and prev_index arrays
+    // Initialize arrays
     for (int i = 0; i < n; i++) {
-        lis_length[i] = 1; // Each element is an LIS of length 1 by itself
-        prev_index[i] = -1; // No previous element initially
+        lis_length[i] = 1;
+        prev_index[i] = -1;
     }
 
-    int max_length = 1; // Length of the longest increasing subsequence
-    int end_point = 0; // End index of the longest increasing subsequence
+    int max_length = 1;
+    int end_point = 0;
 
-    // Calculate lis_length and prev_index arrays
+    // Fill lis_length and prev_index
     for (int i = 1; i < n; i++) {
         for (int j = 0; j < i; j++) {
             if (arr[i] > arr[j] && lis_length[i] < lis_length[j] + 1) {
@@ -190,20 +107,20 @@ void LargestIncreasingSubsequence_dynamic_programming(int* arr, int n) {
     cout << "Length of the longest increasing subsequence is: " << max_length << endl;
     cout << "The longest increasing subsequence is: ";
 
-    // Trace back the LIS from the end_point
+    // Trace back the LIS from end_point
     int* lis = new int[max_length];
-    int k = max_length - 1; // Index for placing elements into the lis array
+    int index = max_length - 1;
     for (int i = end_point; i != -1; i = prev_index[i]) {
-        lis[k--] = arr[i];
+        lis[index--] = arr[i];
     }
 
-    // Print the LIS in ascending order
+    // Print the LIS
     for (int i = 0; i < max_length; i++) {
         cout << lis[i] << " ";
     }
     cout << endl;
 
-    // Deallocate memory reserved for dynamic arrays
+ 
     delete[] lis;
     delete[] lis_length;
     delete[] prev_index;
@@ -213,6 +130,12 @@ int main() {
     int n;
     cout << "Enter the number of elements in the array: ";
     cin >> n;
+
+    if (n <= 0) {
+        cout << "Invalid array size." << endl;
+        return 0;
+    }
+
     int* arr = new int[n];
     cout << "Enter the elements of the array: ";
     for (int i = 0; i < n; i++) {
@@ -221,7 +144,6 @@ int main() {
 
     LargestIncreasingSubsequence_dynamic_programming(arr, n);
 
-    // Deallocate memory reserved for the array
     delete[] arr;
 
     return 0;
